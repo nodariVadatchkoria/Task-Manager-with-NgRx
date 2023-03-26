@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+*, *:before, *:after {
+  box-sizing: border-box
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Raleway', sans-serif;
+}
+
+.container {
+  font-family: 'Raleway', sans-serif;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  .top, .bottom {
+    &:before, &:after {
+      content: '';
+      position: fixed;
+      width: 200vmax;
+      height: 200vmax;
+      background: #7B68EE;
+      top: 50%;
+      left: 50%;
+      margin-top: -100vmax;
+      transform-origin: 0 50%;
+      transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+      z-index: 10;
+      opacity: 0.65;
+      transition-delay: 0.2s;
+    }
+  }
+
+  .top {
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(135deg);
+    }
+  }
+
+  .bottom {
+    &:before {
+      transform: rotate(-45deg);
+    }
+
+    &:after {
+      transform: rotate(-135deg);
+    }
+  }
+  &:hover, &:active {
+    .top, .bottom {
+      &:before, &:after {
+        margin-left: 200px;
+        transform-origin: -200px 50%;
+        transition-delay: 0s;
+      }
+    }
+
+    .center {
+      opacity: 1;
+      transition-delay: 0.2s;
+    }
+  }
+
+  .center {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+    transition-delay: 0s;
+    color: #333;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .inputs {
+        width: 300px;
+        padding: 15px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-family: inherit;
+
+      }
+      .validationMessage{
+        color: red;
+        font-size: 1rem;
+        align-self: flex-start;
+      }
+      .subBtn{
+        display: flex;
+        width: 300px;
+        padding: 15px;
+        align-items: center;
+        justify-content: center;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-family: inherit;
+        background: #7B68EE;
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+        &:hover {
+          background: #fff;
+          color: #7B68EE;
+        }
+      }
+      h4 {
+        font-size: 15px;
+        color: #7B68EE;
+        text-align: center;
+        a{
+          color: #7B68EE;
+          text-decoration: none;
+          margin-left: 5px;
+          font-size: 17px;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  &.mobile {
+    .top, .bottom {
+      &:before, &:after {
+        margin-left: 200px;
+        transform-origin: -200px 50%;
+        transition-delay: .5s;
+      }
+    }
+    .center {
+      opacity: 1;
+      transition-delay: 1s;
+    }
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .container {
+    .center {
+      form {
+        .validationMessage {
+          font-size: .8rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .container {
+    .center {
+      form {
+        .inputs {
+          padding: 10px 15px;
+          margin: 3px 0;
+
+        }
+        .validationMessage {
+          font-size: .7rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .container {
+    .center {
+      form {
+        .inputs {
+          padding: 15px;
+          margin: 10px 0;
+
+        }
+        .validationMessage {
+          font-size: .9rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 280px) {
+  .container {
+    .center {
+      form {
+        .inputs {
+          width: 240px;
+          padding: 15px 5px;
+        }
+      }
+    }
+  }
+}

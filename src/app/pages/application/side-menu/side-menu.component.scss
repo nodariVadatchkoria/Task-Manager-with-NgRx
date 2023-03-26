@@ -1,0 +1,37 @@
+.menu{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100%;
+  width: 300px;
+  left: 0;
+  top: 17%;
+  background-color: #3d4e5c;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 0 10px 0 rgba(131, 128, 128, 0.1);
+  .options1 , .options2, .options3{
+    display: flex;
+
+    border-bottom: 2px solid #a19f9f;
+    height: 50px;
+    text-align: center;
+    justify-content: center;
+    padding: 13px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #fff;
+    &:hover{
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+@media only screen and (max-width: 900px) {
+  .menu{
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    width: 40%;
+  }
+
+}

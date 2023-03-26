@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="flex">
+    <p class="confirm">Are you sure you want to delete?</p>
+  </div>
+  <div mat-dialog-actions class="flex-1">
+    <div class="btns">
+      <button class="btn" mat-button (click)="dialogRef.close(false)">No</button>
+      <button class="btn" mat-button (click)="dialogRef.close(true)">Yes</button>
+    </div>
+
+  </div>
+
+</div>

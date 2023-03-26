@@ -1,0 +1,16 @@
+.container {
+
+}
+
+.content {
+  width: 100%;
+display: flex;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.content-left {
+  display: flex;
+  flex-direction: column;
+}
+

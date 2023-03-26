@@ -1,0 +1,22 @@
+<div id="authors">
+  <ng-container *ngFor="let author of authors">
+     <div class="author">
+       <span></span>
+       <div class="content">
+         <img src="{{author.imageUrl}}" alt="profile image">
+         <section>
+           <h2>{{author.firstName}}</h2>
+           <h2>{{author.lastName}}</h2>
+           <h3>{{author.profession}}</h3>
+         </section>
+         <div class="social">
+           <ng-container *ngFor="let soc of author.social">
+              <a href="{{soc.url}}" target="_blank">
+<!--                  <fa-icon [icon]="['fab' , soc.image]"></fa-icon>-->
+              </a>
+           </ng-container>
+         </div>
+       </div>
+     </div>
+  </ng-container>
+</div>

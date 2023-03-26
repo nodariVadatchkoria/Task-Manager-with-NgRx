@@ -1,0 +1,318 @@
+@import "../../../../mixins";
+
+.header {
+  width: 100%;
+  min-height: 100vh;
+  @include flex(center, center);
+
+  .container {
+    h1 {
+      font-size: 3.5rem;
+      line-height: 3.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    .errors {
+      color: red;
+      margin: -10px 0 20px 0;
+      font-size: 1rem;
+      height: 0px;
+      transition: 2s;
+    }
+
+    input {
+      width: 350px;
+      height: 50px;
+      border-radius: 10px;
+      border: 2px solid rgba(gray, .3);
+      outline: none;
+      margin-bottom: 20px;
+      padding-left: 10px;
+      font-size: 1.2rem;
+      transition: .3s;
+
+      &:hover {
+        box-shadow: 0px 21px 40px 6px rgba(0, 0, 0, 0.1);
+
+        &::placeholder {
+          opacity: .5;
+        }
+      }
+
+      &:focus {
+        border-color: #7A1DE0;
+        box-shadow: 0px 21px 40px 6px rgba(0, 0, 0, 0.2);
+
+        &::placeholder {
+          opacity: .5;
+        }
+      }
+    }
+
+    div {
+      @include flex(flex-start, center);
+
+      button {
+        @include flex(center, center);
+        padding: 15px 0;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: white;
+        width: 200px;
+        background-color: #7B68EE;
+        border: none;
+        border-radius: 15px;
+        outline: none;
+        cursor: pointer;
+        transition: .3s;
+
+        span {
+          display: block;
+          color: white;
+          width: 100%;
+          text-align: center;
+          margin: 0;
+        }
+
+        &:hover {
+          background-color: #7A1DE0;
+        }
+      }
+
+      span {
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: rgba(gray, .3);
+        @include flex(space-between, baseline);
+        flex-direction: column;
+        margin-left: 20px;
+
+        span {
+          &:nth-child(2) {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .header {
+    .container {
+      h1 {
+        font-size: 3rem;
+        line-height: 3rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  .header {
+    .container {
+      h1 {
+        font-size: 2.8rem;
+        line-height: 2.8rem;
+      }
+    }
+
+    img {
+      width: 57%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .header {
+    img {
+      width: 48%;
+    }
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .header {
+    @include flex(space-evenly, center);
+    .container {
+      h1 {
+        font-size: 2.3rem;
+        line-height: 2.3rem;
+      }
+    }
+
+    img {
+      width: 45%;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .header {
+    .container {
+      h1 {
+        font-size: 2rem;
+        line-height: 2rem;
+      }
+
+      p, input {
+        font-size: 1rem;
+      }
+
+      div {
+        button {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    img {
+      width: 45%;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .header {
+    .container {
+      h1 {
+        font-size: 1.8rem;
+        line-height: 1.8rem;
+      }
+
+      input {
+        width: 300px;
+        height: 45px;
+      }
+
+      div {
+        span {
+          span {
+            font-size: .8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .header {
+    .container {
+      h1 {
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+      }
+
+      p, input {
+        font-size: .9rem;
+      }
+
+      input {
+        width: 280px;
+        height: 40px;
+      }
+
+      div {
+        button {
+          font-size: .9rem;
+        }
+        span {
+          span {
+            font-size: .8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .header {
+    .container {
+      input {
+        width: 260px;
+      }
+      div {
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .header {
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+    .container {
+      h1 {
+        font-size: 2.1rem;
+        line-height: 2.1rem;
+      }
+
+      p, input {
+        font-size: 1.2rem;
+      }
+
+      input {
+        width: 300px;
+        height: 40px;
+      }
+
+      div {
+        button {
+          font-size: 1rem;
+        }
+        span {
+          span {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+    img {
+      width: 80%;
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .header {
+    .container {
+      h1 {
+        font-size: 2rem;
+        line-height: 2rem;
+      }
+
+      p, input {
+        font-size: 1rem;
+      }
+
+      input {
+        width: 300px;
+        height: 40px;
+      }
+
+      div {
+        button {
+          font-size: 1rem;
+        }
+        span {
+          span {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+    img {
+      width: 75%;
+    }
+  }
+}

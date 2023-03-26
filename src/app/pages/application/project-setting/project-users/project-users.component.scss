@@ -1,0 +1,21 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f17d7d;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+  .choseUser{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  button{
+    margin-left: 10px;
+  }
+
+}

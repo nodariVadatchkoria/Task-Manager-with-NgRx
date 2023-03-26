@@ -1,0 +1,27 @@
+<div id="testimonials">
+  <div class="container">
+    <ng-container *ngFor="let testimonial of testimonials">
+      <div class="content" #content>
+        <img src="assets/images/quote.png" alt="quote">
+        <p>
+          {{testimonial.comment}}
+        </p>
+        <span>
+            <h3>{{testimonial.author}}</h3>
+            <i>{{testimonial.date}}</i>
+          </span>
+      </div>
+    </ng-container>
+    <button class="prev" type="button" (click)="prev()" #prevBtn>
+      <img src="assets/images/back-button.png" alt="previous">
+    </button>
+    <button class="next" type="button" (click)="next()" #nextBtn>
+      <img src="assets/images/next-button.png" alt="next">
+    </button>
+    <div class="indicators">
+      <ng-container *ngFor="let testimonial of testimonials; let i = index">
+        <button #indicators type="button" (click)="indicator(i)"></button>
+      </ng-container>
+    </div>
+  </div>
+</div>

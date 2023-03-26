@@ -1,0 +1,48 @@
+<div class="nav" [ngClass]="scrolled ? 'scrolled' : ''">
+  <a href="#header" (click)="menuIsOpened = false; router.navigate(['/#header'])" class="dont-close-from-outside">
+    <img src="assets/image/logo.svg" alt="logo" class="logo"/>
+  </a>
+  <div class="nav-links dont-close-from-outside" [ngClass]="menuIsOpened ? 'visible' : ''" (click)="closeMenu($event)">
+    <div></div>
+    <a href="#header" class="dont-close-from-outside"> home</a>
+    <a href="#about" class="dont-close-from-outside"> about project</a>
+    <a href="#testimonials" class="dont-close-from-outside"> testimonials</a>
+    <a href="#authors" class="nav-link"> authors</a>
+<!--    <a routerLink="/dashboard">Dashboard</a>-->
+<!--    <a routerLink="..//application/setting/info" class="nav-link" *ngIf="auth.getToken()"> Task Manager</a>-->
+    <section class="auth-links" *ngIf="!auth.getToken()">
+      <button type="button" (click)="signUp()" class="dont-close-from-outside">sign up</button>
+      <button type="button" (click)="navigateToLogin()" style="color: aliceblue">log in</button>
+    </section>
+    <span *ngIf="auth.getToken()">
+      <p>{{auth.getUser().firstName}} {{auth.getUser().lastName}}</p>
+      <h4 (click)="auth.logout()">Log Out</h4>
+    </span>
+  </div>
+  <div class="auth-links" *ngIf="!auth.getToken(); else userInfo">
+    <button type="button" (click)="signUp()">sign up</button>
+    <button type="button" (click)="navigateToLogin()">Log in</button>
+
+  </div>
+  <div class="toggle-nav dont-close-from-outside" [ngClass]="menuIsOpened ? 'opened' : ''" (click)="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<ng-template #userInfo>
+  <div class="user-info">
+    <div>
+      <p>{{auth.getUser().email}}</p>
+    </div>
+    <div>
+      <span>
+        <p>{{auth.getUser().firstName}}</p>
+        <p>{{auth.getUser().lastName}}</p>
+      </span>
+      <p routerLink="../application">Task Manager</p>
+      <h4 (click)="auth.logout()">Log Out</h4>
+    </div>
+  </div>
+</ng-template>

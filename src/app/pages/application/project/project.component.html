@@ -1,0 +1,31 @@
+<div class="container" #project>
+
+  <div>
+
+    <div class="table-bordered">
+      Select Project: <select [ngModel]="currentProject?.id"
+                              (ngModelChange)="selectedProject($event)">
+      <option selected></option>
+      <option *ngFor="let project of projects$ | async"
+              [value]="project.id"
+      >
+        {{project.name}}
+      </option>
+
+    </select>
+      <button routerLink="/application">Setting</button>
+      <button routerLink="/stepper" (click)="clearLocalStorage()">Add Project</button>
+    </div>
+  </div>
+  <div class="mainContent">
+    <div class="sidebar">
+      <app-side-menu></app-side-menu>
+    </div>
+    <div class="content">
+
+
+    </div>
+  </div>
+
+
+</div>

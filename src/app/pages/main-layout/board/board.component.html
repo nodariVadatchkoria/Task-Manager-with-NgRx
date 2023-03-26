@@ -1,0 +1,76 @@
+
+<div class="head">
+  <p class="name">{{projectName}}</p>
+</div>
+
+<div class="display" cdkDropListGroup>
+<div class="column-container"
+     cdkDropList
+     *ngFor="let column of board.columns;"
+     [cdkDropListData]="tasks[column.id] || []"
+     (cdkDropListDropped)="drop($event, column)"
+>
+  <div class="column">
+    <div class="col-header">
+      <p class="col-name">{{column.name}}</p>
+<!--      <button mat-icon-button>-->
+<!--        <mat-icon>more_horiz</mat-icon>-->
+<!--      </button>-->
+    </div>
+
+
+    <div class="task" *ngFor="let task of tasks[column.id] || []"
+         cdkDrag
+         >
+      <div class="placeholder" *cdkDragPlaceholder></div>
+      <h4 class="title">{{task.name}}</h4>
+      <p class="desc">{{task.description}}</p>
+
+
+        <button class="material-icons btn-delete" (click)="deleteTask(task.id)">delete</button>
+
+
+    </div>
+
+    <button type="button" class="add-task" (click)="addTask(column)">
+      <span class="material-icons">add</span>
+      <p class="p-add">Add Task</p>
+    </button>
+  </div>
+  </div>
+</div>
+
+<!--  <div class="column">-->
+<!--    <div class="prog-header">-->
+<!--      <p class="col-name">In Progress</p>-->
+<!--      <button mat-icon-button>-->
+<!--        <mat-icon>more_horiz</mat-icon>-->
+<!--      </button>-->
+<!--    </div>-->
+
+<!--    <div class="task"></div>-->
+
+<!--    <div class="add-task">-->
+<!--      <span class="material-icons">add</span>-->
+<!--      <p>Add Task</p>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="column">-->
+<!--    <div class="col-header">-->
+<!--      <p class="col-name">Done</p>-->
+<!--      <button mat-icon-button>-->
+<!--        <mat-icon>more_horiz</mat-icon>-->
+<!--      </button>-->
+<!--    </div>-->
+
+<!--    <div class="task"></div>-->
+
+<!--    <div class="add-task">-->
+<!--      <span class="material-icons">add</span>-->
+<!--      <p>Add Task</p>-->
+<!--    </div>-->
+<!-- *ngFor="let task of tasks[column.taskStatus]"
+(dblclick)="viewTask(task, column)"
+ </div>-->
+

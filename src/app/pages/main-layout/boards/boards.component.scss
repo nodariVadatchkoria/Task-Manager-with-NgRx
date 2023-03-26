@@ -1,0 +1,49 @@
+.inner-container {
+  border-radius: 5px;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #1a1a59, #1cb5e0);
+  width: 300px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+}
+
+.container {
+
+  display: flex;
+  flex-direction: column;
+}
+
+.inner-container:hover {
+  background-image: linear-gradient(to right, #1a1a59, #0e5b70);
+}
+
+.inner-container:hover {
+  background-color: #dbd8d8;
+}
+
+.container {
+  margin-left: 25%;
+  margin-top: 5%;
+
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+}
+
+
+
+.board-title {
+  font-size: 1.2rem;
+}
+
+.desc {
+  font-size: 1rem;
+}

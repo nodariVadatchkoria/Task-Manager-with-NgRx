@@ -1,0 +1,120 @@
+<form [formGroup]="issueFormGroup" class="flex">
+  <div class="margin-auto">
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" placeholder="" required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Icon</mat-label>
+      <mat-select formControlName="icon">
+        <mat-option value="task_alt">
+          <span class="material-icons">task_alt</span>
+        </mat-option>
+        <mat-option value="change_history">
+          <span class="material-icons">change_history</span>
+        </mat-option>
+        <mat-option value="timeline">
+          <span class="material-icons">timeline</span>
+        </mat-option>
+        <mat-option value="rebase_edit">
+          <span class="material-icons">rebase_edit</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Color</mat-label>
+      <input
+        matInput
+        type="color"
+        formControlName="color"
+        value="#910D9B"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="true">Active</mat-option>
+        <mat-option value="false">Inactive</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Tasks</mat-label>
+      <mat-chip-grid #chipListBox aria-label="Task Selection" formControlName="tasks" required>
+        <mat-chip *ngFor="let task of tasks" (removed)="remove(task)">
+          {{ task }}
+          <button matChipRemove (click)="filterOptions()">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          placeholder="New Task"
+          #taskInput
+          [formControl]="taskControl"
+          formControlName="tasks"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="$any(chipListBox)"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-grid>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event)"
+      >
+        <mat-option *ngFor="let task of filteredTasks | async" [value]="task" (click)="taskInput.blur(); filterOptions()">
+          {{ task }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div formArrayName="columns" class="step-form-field added">
+      <div *ngFor="let column of colsArray.controls; let i = index">
+        <div [formGroupName]="i">
+          <mat-form-field appearance="fill" class="step-form-field">
+            <mat-label>Column name</mat-label>
+            <input matInput formControlName="name" placeholder="" required/>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="step-form-field">
+            <mat-label>Filed name</mat-label>
+            <input
+              matInput
+              formControlName="filedName"
+              placeholder=""
+              required
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <button type="button" mat-button color="primary" (click)="addCol()" class="add">
+        Add Column
+      </button>
+    </div>
+
+    <div>
+      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+      <button
+
+       [disabled]="!issueFormGroup.valid"
+
+        mat-button
+        matStepperNext
+        type="button"
+        (click)="onSubmit()"
+        appNextButton
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</form>

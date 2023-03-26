@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="board-columns" cdkDropListGroup>
+    <div class="column" *ngFor="let column of board?.columns" cdkDropList [cdkDropListData]="tasks[column.id] || []"
+         (cdkDropListDropped)="drop($event, column)">
+      <div class="head">
+        <h3>Status: {{column.taskStatus}}</h3>
+        <button (click)="addTask(column.id)" mat-raised-button >Add Task</button>
+      </div>
+
+      <div >
+        <div class="card" *ngFor="let card of tasks[column.id] || []" cdkDrag>
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+          <h3>ID:{{card.id}}</h3>
+          <h4>Title:{{card.title}}</h4>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

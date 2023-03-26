@@ -1,0 +1,39 @@
+<!--<a routerLink="">Go To Home</a>-->
+<form [formGroup]="projectFormGroup" class="flex">
+  <div class="margin-auto">
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="" required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Abbreviation</mat-label>
+      <input matInput formControlName="abbreviation" placeholder="" required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" placeholder="" required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Color</mat-label>
+      <input
+        matInput
+        type="color"
+        formControlName="color"
+        value="#910D9B"
+        required
+      />
+    </mat-form-field>
+    <button
+      [disabled]="!projectFormGroup.valid"
+      mat-button
+      matStepperNext
+      (click)="onSubmit()"
+      appNextButton
+    >
+      Next
+    </button>
+  </div>
+</form>

@@ -1,0 +1,28 @@
+<div class="container" [ngClass]="mobile ? 'mobile' : ''" onclick="onclick">
+  <div class="top"></div>
+  <div class="bottom"></div>
+  <div class="center">
+    <h2>Please Sign In</h2>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div *ngIf="isRegistered" class="validationMessage">User with this Email already exists! Please sign in.</div>
+      <input type="email" placeholder="email" id="email" class="inputs" formControlName="email"/>
+      <div *ngIf="form.get('email')?.getError('required')&& form.get('email')?.touched"
+           class="validationMessage">Email required!</div>
+      <div *ngIf="form.get('email')?.getError('email')&& form.get('email')?.touched"
+           class="validationMessage">Please enter Email in correct format!</div>
+
+      <input type="password" placeholder="password" id="password" class="inputs" formControlName="password" #password/>
+      <div *ngIf="form.get('password')?.getError('required') && form.get('password')?.touched"
+           class="validationMessage">Password required!</div>
+      <div *ngIf="form.get('password')?.getError('minlength') && form.get('password')?.touched">Please enter Password with min 6 symbol!</div>
+      <button type="submit" class="inputs subBtn">
+        <span *ngIf="!spinner">Submit</span>
+        <mat-spinner class="spinner" *ngIf="spinner" [diameter]="diameter" color="accent"></mat-spinner>
+      </button>
+      <h4>Don't have an account? <a routerLink="/register"> Register</a></h4>
+    </form>
+  </div>
+</div>
+
+
+

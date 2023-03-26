@@ -1,0 +1,59 @@
+.home {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+
+  img {
+    position: absolute;
+    top: -350px;
+    right: -300px;
+    z-index: -1;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  .home {
+    img {
+      width: 80%;
+    }
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .home {
+    img {
+      width: 85%;
+    }
+  }
+}
+
+@media only screen and (max-width: 790px) {
+  .home {
+    img {
+      width: 95%;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home {
+    img {
+      width: 100%;
+      top: -200px;
+      right: -150px;
+    }
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .home {
+    img {
+      width: 110%;
+      top: -150px;
+      right: -100px;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+
+<div class="cont">
+  <!--    <ng-container *ngIf="boards$ | async as boards" ></ng-container>-->
+  <div>
+    <!--  <mat-select class="select">-->
+    <!--    <mat-option *ngFor="let board of boards" [value]="board.id" >{{board.name}}</mat-option>-->
+    <!--  </mat-select>-->
+    <button mat-raised-button color="primary"
+
+            [routerLink]="['/application/setting/board/addBoard']"
+    >Add Board
+    </button>
+
+  </div>
+</div>
+
+<div class="container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef> Created At</th>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" [routerLink]="['/application/setting/board/editBoard/', element.id]">
+          Edit
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteBoard(element.id)">Delete</button>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+
+
+

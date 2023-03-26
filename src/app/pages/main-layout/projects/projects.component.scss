@@ -1,0 +1,52 @@
+.inner-container {
+  border-radius: 5px;
+  cursor: pointer;
+
+  width: 300px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+}
+
+.container {
+  margin-top: 250px;
+ // display: flex;
+
+  //flex-direction: column;
+}
+
+.inner-container:hover {
+  filter: brightness(80%);
+}
+
+.inner-container:hover {
+  background-color: #dbd8d8;
+}
+
+
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+}
+
+
+.flex-container {
+  margin-left: 25%;
+
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.paginator {
+  margin-bottom: 50px;
+}

@@ -1,0 +1,67 @@
+@import 'mixins';
+
+.mat-mdc-form-field-infix {
+  display: flex;
+  flex-direction: row;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.mat-stepper-next {
+  background: white !important;
+  color: white !important;
+  border: 1px solid white !important;
+  cursor: pointer !important;
+  text-shadow: 0px 0px 20px rgba(white, 1);
+  transition: .3s;
+
+  &:disabled {
+    text-shadow: 0px 0px 20px rgba(white, 0);
+  }
+
+  &:not(:disabled) {
+    animation: button .5s linear;
+    animation-delay: .5s;
+  }
+}
+
+.mat-stepper-previous {
+  width: 100px;
+  position: absolute !important;
+  left: 20px !important;
+  bottom: 20px !important;
+  text-shadow: 0px 0px 20px rgba(white, 1);
+  border: 1px solid white !important;
+  background: #7A1DE0 !important;
+  color: white !important;
+}
+
+.mat-horizontal-content {
+  width: 100% !important;
+}
+.mat-horizontal-stepper-content {
+  width: 100% !important;
+
+  app-create-board {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto !important;
+    @include flex(center, center);
+  }
+}
+
+@keyframes button {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+

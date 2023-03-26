@@ -1,0 +1,62 @@
+<form [formGroup]="boardFormGroup" class="flex step-form-field">
+  <div class="margin-auto">
+    <mat-form-field appearance="fill">
+      <mat-label>Board Name</mat-label>
+      <input matInput formControlName="name" placeholder="" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Board Description</mat-label>
+      <input matInput formControlName="description" placeholder="" required />
+    </mat-form-field>
+
+    <!---->
+    <div formArrayName="columns" class="step-form-field added">
+      <div *ngFor="let column of colsArray.controls; let i = index">
+        <div [formGroupName]="i">
+          <mat-form-field class="step-form-field">
+            <input
+              matInput
+              type="text"
+              formControlName="name"
+              placeholder="Column name"
+            />
+          </mat-form-field>
+          <mat-form-field matInput class="step-form-field">
+            <input
+              matInput
+              type="text"
+              formControlName="description"
+              placeholder="Column description"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="step-form-field">
+            <mat-label>Task Status</mat-label>
+            <mat-select formControlName="taskStatus">
+              <mat-option value="ToDo">Todo</mat-option>
+              <mat-option value="InProgress">In Progress</mat-option>
+              <mat-option value="Done">Done</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <button type="button" mat-button color="primary" (click)="addCol()" class="add">
+        Add Column
+      </button>
+    </div>
+
+    <div>
+      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+      <button
+        [disabled]="!boardFormGroup.valid"
+        mat-button
+        matStepperNext
+        (click)="onSubmit()"
+        appNextButton
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</form>

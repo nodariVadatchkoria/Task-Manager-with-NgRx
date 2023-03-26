@@ -1,0 +1,185 @@
+@import "mixins";
+
+.mat-horizontal-stepper-wrapper {
+  flex-direction: row !important;
+  gap: 0;
+  height: 80vh;
+  width: 70vw;
+  padding: 0 !important;
+  margin: 10vh auto;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0px 0px 82px -10px rgba(#7A1DE0, .9);
+  border: 1px solid #7A1DE0;
+
+  .mat-horizontal-stepper-header-container {
+    background: rgba(#7A1DE0, .9);
+    flex-direction: column;
+    width: 500px;
+    align-items: flex-start;
+    overflow-x: hidden;
+    padding: 50px 0;
+    position: relative;
+    z-index: 5;
+
+    .step-header {
+      width: 100%;
+      padding: 23px;
+      color: white;
+
+      h1 {
+        @include flex(flex-start, baseline);
+        gap: 10px;
+        font-size: 2rem;
+        font-weight: bolder;
+        letter-spacing: 2px;
+
+        .span {
+          height: 2rem;
+          overflow: hidden;
+          @include flex(flex-start, center);
+          flex-direction: column;
+
+          span {
+            transition: .5s;
+          }
+        }
+      }
+
+      div {
+        width: 100%;
+        overflow: hidden;
+        @include flex(flex-start, baseline);
+
+        p {
+          min-width: 100%;
+          font-size: 1.2rem;
+          white-space: break-spaces;
+          transition: .5s;
+        }
+      }
+    }
+
+    .mat-horizontal-stepper-header {
+      width: 100%;
+      height: inherit;
+
+
+      .mat-step-header-ripple {
+        height: 0;
+      }
+
+      .mat-step-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(white, .8);
+
+        &:after {
+          content: '';
+          width: 34px;
+          height: 34px;
+          position: absolute;
+          left: 3px;
+          top: 3px;
+          background: #7A1DE0;
+          border-radius: 50%;
+          z-index: 1;
+        }
+
+
+        &:before {
+          content: '';
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          position: absolute;
+          left: 5px;
+          top: 5px;
+          background: white;
+          z-index: 1;
+          transition: .5s;
+        }
+
+        &.mat-step-icon-state-done {
+          width: 40px;
+          height: 40px;
+
+          &:before {
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+          }
+
+          & + .mat-step-label {
+            padding-left: 50px;
+            transform: scale(1.5);
+          }
+        }
+
+        &.mat-step-icon-selected {
+          width: 40px;
+          height: 40px;
+        }
+
+        .mat-step-icon-content {
+          z-index: 3;
+        }
+
+      }
+
+      .mat-step-label {
+        color: rgba(white, .8);
+        transition: .5s;
+
+        &.mat-step-label-active { //done label
+          color: rgba(white, 1);
+        }
+      }
+    }
+
+    .mat-stepper-horizontal-line {
+      background: rgba(white, .8);
+      min-width: inherit;
+      width: 3px;
+      margin: 0 42px;
+      position: relative;
+
+      div {
+        background: white;
+        width: 5px;
+        height: 0px;
+        position: absolute;
+        left: -1px;
+        top: 0;
+        z-index: 1;
+        transition: .5s;
+      }
+    }
+  }
+
+    .mat-horizontal-content-container {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      position: relative;
+      z-index: 2;
+      box-shadow: 35px -1px 44px -17px rgba(#7A1DE0, .9);
+
+      .mat-horizontal-stepper-content {
+        width: 100%;
+        height: 100%;
+        margin: 0 !important;
+        padding: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include flex(center, center);
+        border: none !important;
+        background: rgba(#7A1DE0, .6);
+      }
+
+    }
+  }
+
+

@@ -1,0 +1,150 @@
+@import "../../../../mixins";
+
+footer {
+  position: relative;
+  z-index: 0;
+  padding: 20px 0;
+  width: 100%;
+  background: rgb(133, 33, 243);
+  background: linear-gradient(97deg, rgba(207, 60, 190, 1) 0%, rgba(133, 33, 243, 1) 42%, rgba(207, 60, 190, 1) 100%);
+  transition: .5s;
+
+  .items-count {
+    width: 80%;
+    margin: auto;
+    @include flex(space-evenly, baseline);
+    border-bottom: 1px solid rgba(white, .5);
+    padding-bottom: 20px;
+
+    span {
+      color: white;
+      text-align: center;
+
+      h1 {
+        margin: 0;
+      }
+
+    }
+  }
+
+  .content {
+    padding: 20px 0;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+
+    h1 {
+      text-transform: uppercase;
+      color: white;
+    }
+
+    button {
+      position: relative;
+      z-index: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 15px 18px;
+      box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.2);
+      border-radius: 50px;
+      transition: .3s;
+
+      &:first-letter {
+        color: #7A1DE0;
+        margin-right: 20px;
+        transition: .3s;
+      }
+
+      div {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 50px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 0;
+        transition: .3s;
+      }
+
+      &:hover {
+        color: #7A1DE0;
+
+        div {
+          width: 100%;
+        }
+
+        &:first-letter {
+          color: #7A1DE0;
+          margin-right: 0px;
+        }
+      }
+
+      p {
+        margin: 0;
+        position: relative;
+        z-index: 1;
+        transition: .5s;
+      }
+    }
+  }
+
+  .terms {
+    width: 80%;
+    margin: auto;
+    @include flex(space-between, center);
+    border-top: 1px solid rgba(white, .5);
+
+    span {
+      color: white;
+    }
+
+    a {
+      transition: .3s;
+
+      &:hover {
+        filter: blur(3px);
+        opacity: .8;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  footer {
+    .items-count {
+      width: 95%;
+
+      span {
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .content {
+      width: 95%;
+    }
+
+    .terms {
+      width: 95%;
+
+      a {
+        width: 50px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+.logo {
+  display: block;
+  width: 90px;
+  height: 90px;
+}

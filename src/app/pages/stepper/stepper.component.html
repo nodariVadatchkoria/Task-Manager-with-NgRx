@@ -1,0 +1,67 @@
+<!-- <button mat-raised-button (click)="isEditable = !isEditable">
+  {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+</button>
+
+-->
+<a routerLink="">Home</a>
+<img [src]="src[srcIndex]" alt="background" #backgroundImg />
+
+<mat-stepper
+  #stepper
+  [linear]="linear | async"
+  class="stepper"
+  [selectedIndex]="nextStepOpen$ | async"
+
+  (selectionChange)="getActiveStep($event)"
+>
+  <mat-step [editable]="isEditable">
+    <ng-template matStepLabel>Project</ng-template>
+    <app-create-project></app-create-project>
+  </mat-step>
+
+  <mat-step [editable]="isEditable">
+    <ng-template matStepLabel>Board</ng-template>
+    <app-create-board></app-create-board>
+  </mat-step>
+
+  <mat-step [editable]="isEditable">
+    <ng-template matStepLabel>Issue Type</ng-template>
+    <app-create-issue-types></app-create-issue-types>
+  </mat-step>
+
+  <mat-step [editable]="isEditable">
+    <ng-template matStepLabel>Users</ng-template>
+    <app-add-users></app-add-users>
+  </mat-step>
+
+  <mat-step class="done">
+    <div class="flex">
+      <div class="margin-auto">
+        <ng-template matStepLabel>Done</ng-template>
+        <p class="para">Great, your project is now being created!</p>
+        <div>
+          <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button matStepperNext routerLink="/application/current" style="background-color: #303f9f;">Finish</button>
+        </div>
+      </div>
+    </div>
+  </mat-step>
+</mat-stepper>
+
+<ng-template #header>
+  <div class="step-header">
+    <h1>Step <span class="span">
+      <span class="counter" *ngFor="let step of stepsCountArray; let i = index">
+        {{i + 1}}
+      </span>
+    </span></h1>
+    <div>
+      <p class="description-1" *ngFor="let inf of stepperInfo">
+        {{inf.description1}}
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+<!-- [completed]="completed | async" -->

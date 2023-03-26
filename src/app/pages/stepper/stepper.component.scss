@@ -1,0 +1,63 @@
+/*.mat-stepper-horizontal {
+  margin-top: 100px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 18px;
+}
+
+.stepper {
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step-form-field {
+  margin-top: 70px;
+}
+
+.done {
+  display: flex;
+}
+
+.flex {
+  display: flex;
+}
+
+.para {
+  font-size: 20px;
+  margin-bottom: 50px;
+}
+
+.margin-auto {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+*/
+
+:root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+img {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  z-index: 0;
+  opacity: 1;
+  pointer-events: none;
+  transition: .3s;
+
+  &.img {
+    opacity: 0;
+  }
+}
+.finishBtn{
+  background-color: #303f9f;
+}

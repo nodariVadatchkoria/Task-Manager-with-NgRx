@@ -1,0 +1,165 @@
+.mat-container {
+  width: 100%;
+  height: 100vh;
+
+}
+
+.sidenav-content {
+  display: flex;
+  height: 100vh;
+
+  //justify-content: center;
+}
+
+.sidenav {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.sidenav-items {
+  margin-top: 50px;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dashboard {
+  justify-content: center;
+}
+
+.add-project {
+  display: flex;
+
+  align-items: center;
+  font-size: 24px;
+}
+
+.add {
+  margin-top: 10px;
+}
+
+.add-container {
+  border-radius: 5px;
+  cursor: pointer;
+ // background-image: linear-gradient(to right, #1a1a59, #1cb5e0);
+  width: 300px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-container:hover {
+ // background-image: linear-gradient(to right, #1a1a59, #0e5b70);
+}
+
+.close {
+  font-size: 44px;
+}
+
+.add-container:hover {
+  background-color: #dbd8d8;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-flow: column;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10%;
+  top: 3%;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  opacity: 70%;
+}
+
+.form {
+  margin-top: 70px;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 250px;
+  height: 30px;
+  margin-bottom: 15px;
+  border: 1px solid rgb(201, 200, 200);
+  border-radius: 5px;
+  padding-left: 10px;
+  outline: none;
+}
+
+.btn-container {
+  display: flex;
+}
+
+.create-btn {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #8c6cee;
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.create-btn:hover {
+  background-color: #7a5bd7;
+}
+
+.create-btn:active {
+  background-color: #6246b7;
+}
+
+.toggle-sidenav {
+  position: absolute;
+  top:150px;
+  left:30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: #dbd8d8;
+  cursor: pointer;
+
+}
+
+.toggle-sidenav:hover {
+  background-color: #cfc3c3;
+}
+
+.toggle-sidenav:active {
+  background-color: #c0b4b4;
+}
+
+.list {
+  list-style: none;
+  text-decoration: none;
+  margin-top: 100px;
+  font-size: 1.1rem;
+}
+
+.list a {
+  text-decoration: none;
+}
+
+.list-item {
+  margin-bottom: 5px;
+}
+

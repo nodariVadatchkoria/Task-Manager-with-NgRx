@@ -1,0 +1,46 @@
+<form [formGroup]="usersFormGroup" class="flex">
+  <div class="margin-auto">
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>First name</mat-label>
+      <input matInput formControlName="firstName" placeholder="" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Last name</mat-label>
+      <input matInput formControlName="lastName" placeholder="" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Id number</mat-label>
+      <input
+        matInput
+        formControlName="identityNumber"
+        placeholder=""
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Mobile</mat-label>
+      <input matInput formControlName="mobileNumber" placeholder="" required />
+    </mat-form-field>
+    <div>
+      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+      <button
+        [disabled]="!usersFormGroup.valid"
+        mat-button
+        matStepperNext
+        type="button"
+        (click)="onSubmit()"
+        appNextButton
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,46 @@
+<h1>Board edit</h1>
+<div>
+  <form [formGroup]="form">
+    <div class="inputForm">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="Description" formControlName="description">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addColumn()">Add Column</button>
+      <button mat-raised-button color="primary" (click)="save()">Save</button>
+    </div>
+
+    <div class="columns" formArrayName="columns" cdkDropList cdkDropListOrientation="horizontal"(cdkDropListDropped)="drop($event)">
+      <div *cdkDragPreview class="prev"></div>
+
+      <div *ngFor="let column of columnsArray.controls; let i= index" [formGroupName]="i"  class="column"  cdkDrag>
+
+
+        <mat-form-field>
+          <mat-label>Column Name</mat-label>
+          <input matInput placeholder="Column Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Column Description</mat-label>
+          <input matInput placeholder="Column Description" formControlName="description">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select placeholder="Task Status" formControlName="taskStatus">
+            <mat-option *ngFor="let status of taskStatuses" [value]="status">{{status}} </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="column-placeholder" *cdkDragPlaceholder></div>
+
+
+
+      </div>
+
+    </div>
+
+  </form>
+</div>

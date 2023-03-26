@@ -1,0 +1,55 @@
+<div class="textBox">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col">
+        <div class="first box">
+          <input  id="fontSize" type="number" value="16" min="1" max="100" (change)="fontSizeChange()">
+        </div>
+        <div class="second box">
+          <button type="button" (click)="changeFontWeight()">
+            <fa-icon [icon]="faBold"></fa-icon>
+          </button>
+          <button type="button" (click)="changeFontWeight2()">
+            <fa-icon [icon]="faItalic"></fa-icon>
+          </button>
+          <button type="button" (click)="changeFontWeight3() ">
+            <fa-icon [icon]="faUnderline"></fa-icon>
+          </button>
+        </div>
+        <div class="third box">
+          <button type="button" (click)="alignLeft()">
+            <fa-icon [icon]="faAlignLeft" ></fa-icon>
+          </button>
+          <button type="button" (click)="alignCenter()">
+            <fa-icon [icon]="faAlignCenter" ></fa-icon>
+          </button>
+          <button type="button" (click)="alignRight()">
+            <fa-icon [icon]="faAlignRight" ></fa-icon>
+          </button>
+        </div>
+        <div class="fourth box">
+          <button type="button" (click)="aA()">aA</button>
+          <button type="button" (click)="capitalize()">
+            <fa-icon [icon]="faTextSlash"></fa-icon>
+          </button>
+          <input type="color" id="fontColor" (change)="color()">
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+
+      <textarea [ngClass]="{textarea1: bold,textarea2:italic, textarea3:underline, fontsize11:fontsize11,
+      alignLeft:alignleft, alignCenter:aligncenter, alignRight:alignright}"
+
+                [ngStyle]="{'font-size': fontsize11}"
+     id="description" name="description"
+                placeholder="Description" formControlName="description"></textarea>
+      </div>
+    </div>
+  </form>
+
+
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+</div>

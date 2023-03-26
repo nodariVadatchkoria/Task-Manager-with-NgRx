@@ -1,0 +1,45 @@
+<div class="header" id="header">
+  <div class="container" [formGroup]="email">
+    <h1>
+      One app to <br> manage all Projects.
+    </h1>
+    <p>
+      All of your work in one place
+    </p>
+    <input type="email" placeholder="Enter your work email" formControlName="email" (focus)="focus()"  (keyup.enter)="submit()">
+    <p style="color: red; margin: -10px 0 20px 0; font-size: 1rem;"
+       *ngIf="touched && email.get('email')?.invalid && email.get('email')?.touched && !email.get('email')?.getError('email')">
+      * Email is required!
+    </p>
+    <p style="color: red; margin: -10px 0 20px 0; font-size: 1rem"
+       *ngIf="touched && email.get('email')?.getError('email') && email.get('email')?.touched">
+      * Please enter valid email!
+    </p>
+    <div>
+      <button type="button" (click)="submit()">
+        <span *ngIf="!spinner">Get Started</span>
+        <mat-spinner class="spinner" *ngIf="spinner" [diameter]="diameter" color="accent"></mat-spinner>
+      </button>
+      <span>
+        <span>free forever.</span>
+        <span>no credit card.</span>
+      </span>
+    </div>
+  </div>
+  <img src="assets/images/undraw_scrum_board_re_wk7v.svg">
+</div>
+
+<!--<div class="header">-->
+<!--  <div>-->
+<!--    <img src="assets/image/logo%203.png" alt="logo" class="logo">-->
+<!--  </div>-->
+<!--  <button routerLink="/register">-->
+<!--    register-->
+<!--  </button>-->
+
+<!-- <button routerLink="/login">-->
+<!--   login-->
+<!-- </button>-->
+<!--</div>-->
+
+

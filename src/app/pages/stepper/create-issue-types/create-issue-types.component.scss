@@ -1,0 +1,53 @@
+@import '../../../../mixins';
+
+form {
+  min-width: 100% !important;
+  overflow: auto;
+  padding-bottom: 70px;
+  max-height: 100%;
+  .margin-auto {
+    @include flex(space-evenly, center);
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow-y: auto !important;
+    max-height: 100%;
+
+    mat-form-field {
+      flex-basis: 40%;
+      min-width: 250px;
+      background: none;
+
+      input {
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+    .add {
+      width: 150px;
+      position: absolute;
+      bottom: 20px;
+      left: calc(50% - 75px);
+      background: green;
+      border: 1px solid white;
+      border-radius: 5px;
+      color: white;
+    }
+
+    .added {
+      width: 100%;
+
+      div {
+        div {
+          @include  flex(center, center);
+          gap: 30px;
+          flex-wrap: wrap;
+          mat-form-field {
+            flex-basis: 40%;
+            min-width: 250px;
+          }
+        }
+      }
+    }
+  }
+}

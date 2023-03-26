@@ -1,0 +1,16 @@
+<!--<p *ngFor="let board of boards">{{board.name}}</p>-->
+
+<div class="container">
+  <div class="board-container">
+    <div class="brd-container grid">
+      <div *ngFor="let board of boards">
+        <div class="inner-container" [routerLink]="['/main/board', board.id]">
+          <div class="board">
+            <p class="board-title">{{board.name}}</p>
+            <p class="desc">{{board.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
