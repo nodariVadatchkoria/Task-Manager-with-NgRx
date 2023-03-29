@@ -1,34 +1,47 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
+    HttpRequest,
+    HttpHandler,
+    HttpEvent,
+    HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ProjectFacade } from 'src/app/facades/project-facade.service';
-import {AuthInterceptor} from "./auth.interceptor";
+import {Observable, switchMap} from 'rxjs';
+import {Store} from "@ngrx/store";
+import {ProjectStateModule} from "../../store";
+import {currentProject} from "../../store/rxProject/project.selectors";
 
 @Injectable()
 export class ProjectInterceptor implements HttpInterceptor {
-  constructor(private projectFacade: ProjectFacade) {
-  }
-
-  intercept(
-    request: HttpRequest<unknown>,
-    next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
-    const project = this.projectFacade.getProject();
-
-
-    if (project) {
-      return next.handle(
-        request.clone({
-          setHeaders: { project: String(project.id) }
-        })
-      );
+    constructor(
+        private store: Store<{ project: ProjectStateModule }>,
+    ) {
     }
 
-    return next.handle(request);
-  }
+    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+        return this.store.select(currentProject)
+            .pipe(
+                switchMap((project) => {
+                        if (project) {
+                            request = request.clone({
+                                setHeaders: {
+                            project: String(project.id)
+                                }
+                            })
+                        }
+                        // const project = this.projectFacade.getProject();
+                        //
+                        //
+                        // if (project) {
+                        //     return next.handle(
+                        //         request.clone({
+                        //             setHeaders: {project: String(project.id)}
+                        //         })
+                        //     );
+                        // }
+
+                        return next.handle(request);
+                    }
+                )
+            )
+    };
 }

@@ -16,6 +16,9 @@ return this.get<PaginationResponse<IProject>>('project');
   getAllProjects():Observable<IProject[]> {
     return this.get<IProject[]>('project/all');
   }
+  getMyProjects():Observable<IProject[]> {
+    return this.get<IProject[]>('project/my');
+  }
   getProjectById(id: number):Observable<IProject> {
     return this.get<IProject>(`project/${id}`);
   }

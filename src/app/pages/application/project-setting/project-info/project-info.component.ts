@@ -8,6 +8,10 @@ import {SharedService} from "../../../../core/services/shared.service";
 import {ProjectFacade} from "../../../../facades/project-facade.service";
 
 import {DescriptionComponent} from "./description.component";
+import {Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import {ProjectStateModule} from "../../../../store";
+import {currentProject} from "../../../../store/rxProject/project.selectors";
 
 
 @Component({
@@ -22,7 +26,8 @@ export class ProjectInfoComponent implements OnInit {
               private boardService: BoardService,
               private sharedService: SharedService,
               private router: Router,
-              private projectFacade: ProjectFacade,
+              // private projectFacade: ProjectFacade,
+              private readonly store: Store<{project: ProjectStateModule}>,
 
   ) {
   }
@@ -32,13 +37,15 @@ export class ProjectInfoComponent implements OnInit {
   pageSize: number = 10;
   page: number = 1;
 
+  currentProject$: Observable <IProject | null > = this.store.select(currentProject)
+
   /*  @Input('length') length!: number;
     @Input('pageSize') pageSize!: number;
     @Input('pageSizeOptions') pageSizeOptions!: number;*/
-get project(): IProject {
-  return this.projectFacade.getProject();
-
-}
+// get project(): IProject {
+//   return this.projectFacade.getProject();
+//
+// }
   ngOnInit() {
     this.getProjects('DESC', this.page, this.pageSize);
 

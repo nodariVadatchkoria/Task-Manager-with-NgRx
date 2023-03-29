@@ -58,7 +58,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.projectFacade.setProjectId(projectId)
     setTimeout(() => {
       location.reload()
-    }, 2000)
+    }, 6000)
   }
 
 }

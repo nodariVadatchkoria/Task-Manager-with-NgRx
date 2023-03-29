@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {InjectionToken, isDevMode, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ApplicationComponent} from "./application.component";
 import {ApplicationRoutingModule} from "./application-routing.module";
@@ -15,6 +15,10 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {NgxMatColorPickerModule} from "@angular-material-components/color-picker";
 import {MatButtonModule} from "@angular/material/button";
 import { ProjectCurrentComponent } from './current-project/project-current.component';
+import {ReducerManager, StoreModule} from "@ngrx/store";
+import {ProjectEffects, projectReducer} from "../../store";
+import {EffectsModule} from "@ngrx/effects";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 
 
@@ -41,7 +45,12 @@ import { ProjectCurrentComponent } from './current-project/project-current.compo
         MatDatepickerModule,
         NgxMatColorPickerModule,
         ReactiveFormsModule,
-        MatButtonModule
+        MatButtonModule,
+        // StoreModule.forFeature('project' , projectReducer),
+        //
+        // EffectsModule.forFeature([ProjectEffects]),
+        // StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     ]
+
 })
 export class ApplicationModule { }

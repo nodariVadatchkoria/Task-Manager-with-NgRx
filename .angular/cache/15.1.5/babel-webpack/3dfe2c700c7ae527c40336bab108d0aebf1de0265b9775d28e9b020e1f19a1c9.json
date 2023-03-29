@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './rxProject';","map":{"version":3,"mappings":"AAAA,cAAc,aAAa","names":[],"sourceRoot":"","sources":["/Users/macbookpro/Desktop/GitHubRepo/Task-Manager-with-NgRx/src/app/store/index.ts"],"sourcesContent":["export * from './rxProject';"]},"metadata":{},"sourceType":"module","externalDependencies":[]}

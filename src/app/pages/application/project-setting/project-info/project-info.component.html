@@ -1,16 +1,17 @@
 <h1>Projects List</h1>
+<ng-container *ngIf="currentProject$ | async as currentProject">
 <div class="container">
   <div class="prj-container">
     <div class="project-container grid">
-      <div *ngFor="let project of projects; let i = index">
-        <div class="inner-container" [ngStyle]="{backgroundColor: project.color}" [routerLink]="['/application/setting/board',]
+<!--      <div *ngFor="let project of projects; let i = index">-->
+        <div class="inner-container" [ngStyle]="{backgroundColor: currentProject.color}" [routerLink]="['/application/setting/board',]
         // project.id
         ]">
           <div class="add-project">
-            <p class="prj-title">project name: {{project.name}}</p>
-            <p class="prj-title">project abbreviation: {{project.abbreviation}}</p>
-            <p class="prj-title"><button [routerLink]="['/application/setting/info/description', project.id]">Description</button></p>
-            <button [routerLink]="['/application/setting/edit', project.id]">Edit</button>
+            <p class="prj-title">project name: {{currentProject.name}}</p>
+            <p class="prj-title">project abbreviation: {{currentProject.abbreviation}}</p>
+            <p class="prj-title"><button [routerLink]="['/application/setting/info/description', currentProject.id]">Description</button></p>
+            <button [routerLink]="['/application/setting/edit', currentProject.id]">Edit</button>
           </div>
         </div>
       </div>
@@ -19,7 +20,8 @@
 
   </div>
 
-</div>
+<!--</div>-->
+</ng-container>
 
 <mat-paginator [length]="projectsLength"
                [pageSize]="pageSize"

@@ -4,6 +4,9 @@ import {Observable, Subject, takeUntil} from "rxjs";
 import {IProject} from "../../../core/interfaces/iproject";
 import {Router} from "@angular/router";
 import {ProjectFacade} from "../../../facades/project-facade.service";
+import {Store} from "@ngrx/store";
+import {initCurrentProject, loadProjects, ProjectStateModule, setProject} from "../../../store";
+import {currentProject} from "../../../store/rxProject/project.selectors";
 
 @Component({
   selector: 'app-project',
@@ -12,26 +15,41 @@ import {ProjectFacade} from "../../../facades/project-facade.service";
 })
 export class ProjectComponent implements OnInit, AfterViewInit {
   projects: any = [];
-  projects$ = this.projectFacade.myProjects$;
-  currentProject?: IProject  = this.projectFacade.getProject()
+  projects$ = this.store.select(state => state.project.projects)
+  // currentProject?: IProject  = this.projectFacade.getProject()
+  currentProject: IProject | null = null
   sub$ = new Subject()
 
   constructor(
     private projectService: ProjectService,
     private projectFacade: ProjectFacade,
+    private store: Store<{project: ProjectStateModule}>,
   ) {
   }
 
   ngOnInit(): void {
     // this.projectService.getAllProjects()
-    this.getMyProjects()
+    // this.getMyProjects()
+    this.store.dispatch(loadProjects())
+    this.store.dispatch(initCurrentProject())
+    this.store.select(currentProject)
+        .pipe(takeUntil(this.sub$))
+        .subscribe((project) => {
+          this.currentProject = project;
+        })
+
   }
 
   selectedProject(projectId: any) {
-    this.projectFacade.setProjectId(projectId)
-    setTimeout(() => {
-      location.reload()
-    }, 2000)
+    this.store.dispatch(setProject({projectId}))
+    // this.projectFacade.setProjectId(projectId)
+    // setTimeout(() => {
+    //   location.reload()
+    // }, 6000)
+  }
+
+  getMyProjects() {
+    this.store.dispatch(loadProjects())
   }
 
   scrolledTop: boolean = false;
@@ -53,11 +71,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     localStorage.removeItem('issueType');
   }
 
-  getMyProjects() {
-    this.projectFacade.getMyProjects$()
-      .pipe(takeUntil(this.sub$))
-      .subscribe()
-  }
+
 }
 
 
