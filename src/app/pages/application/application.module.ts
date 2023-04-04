@@ -19,6 +19,7 @@ import {ReducerManager, StoreModule} from "@ngrx/store";
 import {ProjectEffects, projectReducer} from "../../store";
 import {EffectsModule} from "@ngrx/effects";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 
@@ -46,10 +47,13 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
         NgxMatColorPickerModule,
         ReactiveFormsModule,
         MatButtonModule,
+        MatSnackBarModule
+
         // StoreModule.forFeature('project' , projectReducer),
         //
         // EffectsModule.forFeature([ProjectEffects]),
         // StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+
     ]
 
 })

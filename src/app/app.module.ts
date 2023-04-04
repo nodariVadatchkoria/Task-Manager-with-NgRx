@@ -5,9 +5,9 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
+import {AuthInterceptor} from "./core/interceptors";
 import {PageNotFoundComponent} from './pages/404-error/page-not-found/page-not-found.component';
-import {ProjectInterceptor} from './core/interceptors/project.interceptor';
+import {ProjectInterceptor} from './core/interceptors';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS} from "@angular-material-components/color-picker";
@@ -22,7 +22,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import {ProjectEffects, projectReducer} from "./store/rxProject";
+import {ProjectEffects, projectReducer} from "./store";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 

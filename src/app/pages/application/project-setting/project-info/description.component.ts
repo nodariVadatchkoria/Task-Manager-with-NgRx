@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {IProject} from "../../../../core/interfaces/iproject";
 import {ProjectFacade} from "../../../../facades/project-facade.service";
-import {Subject, takeUntil} from "rxjs";
+import {Subject, takeUntil, tap} from "rxjs";
 import {ProjectService} from "../../../../core/services/project.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {
   faAlignCenter,
@@ -14,6 +14,8 @@ import {
   faTextSlash,
   faUnderline,
 } from '@fortawesome/free-solid-svg-icons';
+import {Store} from "@ngrx/store";
+import {loadProjects, ProjectStateModule, setProject} from "../../../../store";
 
 @Component({
   selector: 'app-description',
@@ -30,17 +32,25 @@ export class DescriptionComponent implements OnInit {
   faBold = faBold;
   sub$ = new Subject()
 constructor(
+    private store: Store<{ project: ProjectStateModule }>,
   private projectFacade: ProjectFacade,
   private projectService: ProjectService,
   private route: ActivatedRoute,
+    private router: Router,
 ) { }
   form: FormGroup = new FormGroup({
+    id: new FormControl(this.project?.id, ),
     description: new FormControl(this.project?.description, ),
+    name: new FormControl(this.project?.name, ),
+    abbreviation: new FormControl(this.project?.abbreviation, ),
+    color: new FormControl(this.project?.color,),
   });
-  get project(): IProject {
-    return this.projectFacade.getProject();
+  get project(): any{
+    // return this.projectFacade.getProject();
+    return this.store.dispatch(loadProjects())
   }
   ngOnInit(): void {
+
     this.route.params.subscribe(
       params =>{
         if (params['id']){
@@ -60,12 +70,15 @@ constructor(
 
 
   save() {
-    this.projectService.updateProject(this.project.id, this.form.value).subscribe(
+    this.projectService.updateProject( this.form.value).subscribe(
       res => {
         this.projectService.getProjectById(this.project.id).subscribe(
           res => {
-            this.projectFacade.setProject(res);
-            console.log(res)
+            // this.projectFacade.setProject(res);
+            tap((res:IProject) => {
+              this.store.dispatch(setProject({projectId: res.id}))
+            })
+            this.router.navigate(['/application/project-setting/project-info'])
           }
         )
       }

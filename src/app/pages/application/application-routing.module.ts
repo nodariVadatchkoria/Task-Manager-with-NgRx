@@ -7,6 +7,7 @@ import {ProjectEditComponent} from "./project-edit/project-edit.component";
 import {ProjectCurrentComponent} from "./current-project/project-current.component";
 import {AuthGuard} from "../../core/guards/auth.guard";
 
+
 const routes: Routes = [
 
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
         path: 'main',
         loadChildren: () => import('src/app/pages/main-layout/main-layout.module').then(m => m.MainLayoutModule)
       }
+
 
     ],
   }

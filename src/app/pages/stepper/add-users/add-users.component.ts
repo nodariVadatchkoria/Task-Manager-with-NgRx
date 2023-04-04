@@ -49,6 +49,7 @@ export class AddUsersComponent implements OnInit, AfterViewInit {
         Validators.pattern('[0-9]+'),
       ],
     ],
+    isActive: [true],
   });
   isEditable = true;
 

@@ -23,7 +23,7 @@ export class UserEditComponent {
     email: new FormControl(null, [Validators.required, Validators.email]),
     identityNumber: new FormControl(null, [Validators.required]),
     mobileNumber: new FormControl(null, [Validators.required]),
-    isActive: new FormControl(true, [Validators.required]),
+    isActive: new FormControl(true, ),
   });
 
   save() {

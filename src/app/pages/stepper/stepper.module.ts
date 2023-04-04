@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {isDevMode, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StepperComponent } from './stepper.component';
 import { StepperRoutingModule } from './stepper-routing.module';
@@ -18,6 +18,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
 import {NextButtonDirective} from "../../core/directives";
+import {StoreModule} from "@ngrx/store";
+import {ProjectEffects, projectReducer} from "../../store";
+import {EffectsModule} from "@ngrx/effects";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 @NgModule({
   declarations: [
@@ -42,6 +46,7 @@ import {NextButtonDirective} from "../../core/directives";
     MatAutocompleteModule,
     MatIconModule,
     MatOptionModule,
+
   ],
   providers: [
     {

@@ -27,14 +27,22 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
     users$: Observable<User[]> = this.userService.getUsersAll()
     projectUsersIds: number[] = [];
 
-    get projectId() {
-        return this.projectFacade.getProject().id
+    get projectId(){
+        // return this.projectFacade.getProject().id
+        return this.store.select(currentProject).subscribe((project)=>{
+            if (project){
+                return project.id
+            }
+            else{
+                return null
+            }
+        })
     }
 
     constructor(
         private store: Store<{ project: ProjectStateModule }>,
         private projectService: ProjectService,
-        private projectFacade: ProjectFacade,
+        // private projectFacade: ProjectFacade,
         private userFacade: UsersFacadeService,
         private userService: UsersService,
         private dialog: MatDialog,
@@ -46,7 +54,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
     });
 
     getCurrentProjectUsers() {
-        this.projectService.getProjectUsersId(this.projectId)
+        this.projectService.getProjectUsersId(+this.projectId)
             .pipe(takeUntil(this.sub$))
             .subscribe(users => {
                 this.projectUsersIds = users.map((user: User) => user.id)
@@ -73,7 +81,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
     removeUser(id: number) {
         const userIds = this.projectUsersIds.filter((userId: number) => userId !== id)
         this.projectService.addProjectUserData({
-            projectId: this.projectId,
+            projectId: +this.projectId,
             userIds
         })
             .pipe(takeUntil(this.sub$))
@@ -94,12 +102,13 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
             .subscribe(() => {
                 this.getCurrentProjectUsers()
                 this.addUser()
+
             })
     }
 
     createUser(userIds: number[]) {
         return this.projectService.addProjectUserData({
-            projectId: this.projectId,
+            projectId: +this.projectId,
             userIds
         })
             .pipe(takeUntil(this.sub$))

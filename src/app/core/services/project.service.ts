@@ -25,7 +25,7 @@ return this.get<PaginationResponse<IProject>>('project');
   createProject(project: IProject): Observable<IProject> {
     return this.post<IProject>('project', project);
   }
-  updateProject(id: number, project: IProject):Observable<IProject> {
+  updateProject(project: IProject):Observable<IProject> {
     return this.put<IProject>(`project/${project.id}`, project);
   }
   deleteProject(id: number):Observable<any> {

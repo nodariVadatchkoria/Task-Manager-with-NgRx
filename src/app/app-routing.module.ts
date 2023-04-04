@@ -8,12 +8,14 @@ let isAuthorised = true;
 
 import { PageNotFoundComponent } from './pages/404-error/page-not-found/page-not-found.component';
 import {PermissionGuard} from "./core/guards/permission.guard";
+import * as path from "path";
 
 const routes: Routes = [
   {
     path: '',
 
-    // loadChildren: () => isAuthorised ? import('./pages/application/application.module').then(m => m.ApplicationModule) :
+    // loadChildren: () => isAuthorised ? import('./pages/application/application.module')
+    //         .then(m => m.ApplicationModule) :
     //   import('./pages/home/home.module').then(m => m.HomeModule),
 
     children: [
@@ -22,6 +24,8 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/home/home.module').then((m) => m.HomeModule),
       },
+
+
       {
         path: 'auth',
         loadChildren: () =>
@@ -72,8 +76,13 @@ const routes: Routes = [
         path: 'roles',
         loadChildren: () => import('./pages/roles/roles.module').then(m => m.RolesModule)
       },
+      {
+        path:'user',
+        loadChildren:()=> import('./pages/user/user.module').then(m => m.UserModule)
+      }
   ],
   },
+
   {
     path: '**',
     component: PageNotFoundComponent,

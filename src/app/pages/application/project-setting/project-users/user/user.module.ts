@@ -8,6 +8,8 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
+import {StoreModule} from "@ngrx/store";
+import {userReducer} from "./store ";
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+      StoreModule.forFeature('user' , userReducer),
   ],
   exports: [UserEditComponent]
 })
