@@ -8,6 +8,8 @@ import {ConfirmDeleteComponent} from "../../../../shared/confirm-delete/confirm-
 import {PageEvent} from "@angular/material/paginator";
 import {UserRoleComponent} from "../user-role/user-role.component";
 import {UserAddEditComponent} from "../user-add-edit/user-add-edit.component";
+import {Store} from "@ngrx/store";
+import {loadUsers, UserStateModel} from "../../store ";
 
 
 @Component({
@@ -26,12 +28,15 @@ export class UsersComponent implements OnInit{
   pageSize = 10;
 
   constructor(
+      private store: Store<{user: UserStateModel}>,
     private userService: UsersService,
     public dialog: MatDialog
   ) {
   }
 
   ngOnInit() {
+    this.store.dispatch(loadUsers({
+      page: this.pageIndex, limit: this.pageSize}))
     this.getUsers();
   }
 

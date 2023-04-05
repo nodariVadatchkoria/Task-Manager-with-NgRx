@@ -5,7 +5,6 @@ export  const loadUsers = createAction(
         props<{
         page: number,
         limit: number,
-        search: string
     }>()
 );
 

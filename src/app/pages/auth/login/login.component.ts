@@ -7,10 +7,11 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../core/services';
 import {ActivatedRoute, Router} from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import {map, Subject, switchMap, takeUntil} from 'rxjs';
 import {CookieService} from "../../../core/services/cookie.service";
 import {ProjectService} from "../../../core/services/project.service";
 import {IProject} from "../../../core/interfaces/iproject";
+import {RoleService} from "../../../core/services/role.service";
 
 
 @Component({
@@ -35,6 +36,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private projectsService: ProjectService,
+    private roleService: RoleService
   ) {}
 
   isRegistered: boolean = false;
@@ -65,14 +67,27 @@ export class LoginComponent implements AfterViewInit, OnInit {
     this.authService
       .login(this.form.value)
       .pipe(takeUntil(this.sub$))
-      .subscribe((res) => {
+    .subscribe((res) => {
         this.getProjects();
-          if (this.projects.length > 0) {
-          this.router.navigate(['/main/projects']);
-        } else {
-          this.router.navigate(['/stepper']);
-        }
-      });
+
+      })
+    switchMap(() => this.roleService.getMyRoles()
+        .pipe(
+            map((res: any) => {
+                  const permissions: string[] = []
+                  const roles = res.forEach((r: any) => {
+                    r.permissions && permissions.push(...r.permissions.map((p: any) => p.name))
+                  })
+                  localStorage.setItem('permissions', JSON.stringify(permissions));
+                }
+            )
+        ),
+    );
+    if (this.projects.length > 0) {
+      this.router.navigate(['']);
+    } else {
+      this.router.navigate(['/stepper']);
+    }
 
   }
 

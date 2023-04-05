@@ -29,8 +29,8 @@ createUser(user: User){
     return this.http.get(this.apiUrl + 'users' + '/all');
   }
 
-  getUserByID(id: number) {
-    return this.http.get(`${this.apiUrl}/${id}`);
+  getUserByID(id: number) :Observable<User> {
+    return this.get(`users/${id}`);
   }
 
   setUser(user: any) {
@@ -46,7 +46,7 @@ createUser(user: User){
   }
 
   deleteUserById(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.delete(`users/${id}`);
   }
 
   updateUserRoles(params: { userId: number, roleIds: number[] }): Observable<User> {

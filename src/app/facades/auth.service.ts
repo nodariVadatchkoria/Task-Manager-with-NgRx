@@ -16,6 +16,7 @@ export class AuthFacade {
   }
 
   get permissions(): string[] {
+
     const permissions = localStorage.getItem('permissions');
     return (permissions ? JSON.parse(permissions) : []) as string[];
   }

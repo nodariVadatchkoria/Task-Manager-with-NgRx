@@ -14,6 +14,9 @@ import {MatInputModule} from "@angular/material/input";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {PermissionsDirective} from "../../core/directives/permissions.directive";
+import {StoreModule} from "@ngrx/store";
+import {UserEffects, userReducer} from "./store ";
+import {EffectsModule} from "@ngrx/effects";
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import {PermissionsDirective} from "../../core/directives/permissions.directive"
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    PermissionsDirective
+    PermissionsDirective,
+    StoreModule.forFeature('user' , userReducer),
+      EffectsModule.forFeature([UserEffects])
   ],
   exports: [
     UserAddEditComponent

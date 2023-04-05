@@ -19,7 +19,7 @@ export class PermissionGuard implements CanActivate {
     const permissions = route.data['permissions'] as string[];
     const userPermissions = this.authFacade.permissions;
 
-    const hasPermission = userPermissions.some(permission => permissions.includes(permission));
+    const hasPermission = userPermissions.some(permissions => permissions.includes(permissions));
     return hasPermission ? true : this.router.createUrlTree(['/access-denied'])
   }
 

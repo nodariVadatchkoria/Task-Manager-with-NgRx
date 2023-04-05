@@ -24,6 +24,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {ProjectEffects, projectReducer} from "./store";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BacklogComponent } from './pages/backlog/backlog.component';
+import {MatTableModule} from "@angular/material/table";
 
 
 
@@ -32,36 +34,38 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         AppComponent,
         PageNotFoundComponent,
         TaskAddEditComponent,
+        BacklogComponent,
 
     ],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatDividerModule,
-    MatOptionModule,
-    MatInputModule,
-    MatSelectModule,
-    FontAwesomeModule,
-    StoreModule.forRoot(
-        {
-            project: projectReducer,
-        }
-    ),
-    EffectsModule.forRoot(
-        [
-            ProjectEffects
-        ]
-    ),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatDividerModule,
+        MatOptionModule,
+        MatInputModule,
+        MatSelectModule,
+        FontAwesomeModule,
+        StoreModule.forRoot(
+            {
+                project: projectReducer,
+            }
+        ),
+        EffectsModule.forRoot(
+            [
+                ProjectEffects
+            ]
+        ),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
+        MatTableModule,
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

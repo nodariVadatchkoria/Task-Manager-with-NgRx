@@ -5,6 +5,7 @@ import {BaseService} from "./base.service";
 import * as http from "http";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "./cookie.service";
+import {IRole} from "../interfaces/role";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,9 @@ export class AuthService extends BaseService {
             this.setUser(response.user);
             this.setRefreshToken(response.token.refreshToken)
             this.setUserInCookie(response.user, response);
+            this.setUserRoles(response.user.roles);
+            this.setUserPermissions(response.user.roles.map((role: IRole) => role.permissions).flat());
+
           }
         )
       )
@@ -49,7 +53,12 @@ export class AuthService extends BaseService {
   setUser(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
   }
-
+setUserRoles(roles: IRole[]) {
+    localStorage.setItem('roles', JSON.stringify(roles));
+  }
+  setUserPermissions(permissions: string[]) {
+    localStorage.setItem('permissions', JSON.stringify(permissions));
+  }
   setUserInCookie(user: User, Response: LoginResponse) {
     const expiereTime = 24 * 60 * 60 * 1000;
     const cookieExpire: any = new Date(Date.now() + expiereTime);

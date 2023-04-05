@@ -35,6 +35,10 @@ const routes: Routes = [
       {
         path: 'main',
         loadChildren: () => import('src/app/pages/main-layout/main-layout.module').then(m => m.MainLayoutModule)
+      },
+      {
+        path: 'permission',
+        loadChildren: () => import('src/app/pages/user/user.module').then(m => m.UserModule)
       }
 
 

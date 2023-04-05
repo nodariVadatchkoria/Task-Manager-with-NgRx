@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {UsersService} from "../../../../../../core/services/users.service";
+import {UsersService} from "../../../core/services/users.service";
 import {loadUsers, loadUsersSuccess, loadUsersFailure} from "./user.actions";
 import {catchError, map, of, switchMap} from "rxjs";
 import {data} from "autoprefixer";

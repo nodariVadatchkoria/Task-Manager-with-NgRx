@@ -1,5 +1,5 @@
 import {createReducer, on} from "@ngrx/store";
-import {User} from "../../../../../../core/interfaces";
+import {User} from "../../../core/interfaces";
 import {loadUsersSuccess} from "./user.actions";
 
 export interface UserStateModel {
