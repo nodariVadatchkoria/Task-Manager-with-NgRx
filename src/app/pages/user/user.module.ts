@@ -38,7 +38,7 @@ import {EffectsModule} from "@ngrx/effects";
     MatPaginatorModule,
     PermissionsDirective,
     StoreModule.forFeature('user' , userReducer),
-      EffectsModule.forFeature([UserEffects])
+    EffectsModule.forFeature([UserEffects])
   ],
   exports: [
     UserAddEditComponent

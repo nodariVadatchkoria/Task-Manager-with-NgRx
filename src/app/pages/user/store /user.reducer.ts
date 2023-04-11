@@ -1,6 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 import {User} from "../../../core/interfaces";
-import {loadUsersSuccess} from "./user.actions";
+import {loadUsersFailure, loadUsersSuccess} from "./user.actions";
 
 export interface UserStateModel {
     users: User[];
@@ -14,18 +14,27 @@ const initialState = {
     users: [],
     page: 1,
     limit: 10,
+
 }
 
 
 export const userReducer = createReducer(
     initialState,
+
     on(loadUsersSuccess, (state, {data}) => {
         return {
             ...state,
             users: data.data,
             limit: data.limit,
             page: data.page,
-            totalCount: data.totalCount,
+            totalCount: data.totalCount
+        }
+    }),
+    on(loadUsersFailure, (state, {error}) => {
+        return {
+            ...state,
+            error: error
         }
     })
+
 );

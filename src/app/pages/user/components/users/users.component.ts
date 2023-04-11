@@ -36,16 +36,19 @@ export class UsersComponent implements OnInit{
 
   ngOnInit() {
     this.store.dispatch(loadUsers({
-      page: this.pageIndex, limit: this.pageSize}))
+      page: this.pageIndex, limit: this.pageSize,}))
     this.getUsers();
   }
 
   getUsers() {
+    this.store.dispatch(loadUsers({
+        page: this.pageIndex, limit: this.pageSize,
+    }))
     this.userService.getUsers({
       page: this.pageIndex,
       limit: this.pageSize
     })
-      .subscribe(users => {
+        .subscribe(users => {
         this.dataSource.data = users.data;
 
         this.total = users.totalCount;

@@ -28,7 +28,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
     projectUsersIds: number[] = [];
 
     get projectId(){
-        // return this.projectFacade.getProject().id
+        return this.projectFacade.getProject().id
         return this.store.select(currentProject).subscribe((project)=>{
             if (project){
                 return project.id
@@ -42,7 +42,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
     constructor(
         private store: Store<{ project: ProjectStateModule }>,
         private projectService: ProjectService,
-        // private projectFacade: ProjectFacade,
+        private projectFacade: ProjectFacade,
         private userFacade: UsersFacadeService,
         private userService: UsersService,
         private dialog: MatDialog,
@@ -64,7 +64,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
 
 
     ngOnInit(): void {
-        // this.getCurrentProjectUsers()
+        this.getCurrentProjectUsers()
         this.store.select(currentProject)
             .subscribe((project)=>{
                 if (project){

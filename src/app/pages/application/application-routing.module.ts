@@ -24,10 +24,10 @@ const routes: Routes = [
         path:'current',
         component: ProjectCurrentComponent
       },
-      // {
-      //   path: 'edit/:id',
-      //   component: ProjectEditComponent
-      // },
+      {
+        path: ':id',
+        component: ProjectEditComponent
+      },
       {
         path: 'setting',
         loadChildren: () => import('./project-setting/project-setting.module').then(m => m.ProjectSettingModule)
@@ -39,6 +39,10 @@ const routes: Routes = [
       {
         path: 'permission',
         loadChildren: () => import('src/app/pages/user/user.module').then(m => m.UserModule)
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('src/app/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       }
 
 

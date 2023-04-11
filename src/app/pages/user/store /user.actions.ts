@@ -1,16 +1,16 @@
 import {createAction, props} from "@ngrx/store";
 
-export  const loadUsers = createAction(
+export const loadUsers = createAction(
     '[User] Load Users',
-        props<{
+    props<{
         page: number,
         limit: number,
     }>()
 );
 
-export  const loadUsersSuccess = createAction(
-    '[User] Load Users Success',
-    props<{ data: any }>()
+export const loadUsersSuccess = createAction(
+    '[user] Load Users Success',
+    props<{data: any }>()
 );
 export const loadUsersFailure = createAction(
     '[User] Load Users Failure',

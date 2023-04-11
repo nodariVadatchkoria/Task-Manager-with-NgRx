@@ -5,14 +5,15 @@ import {BoardComponent} from "./board/board.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardComponent,
     children: [
       {
         path: ':id',
-        component: BoardComponent,
-      },
+        component: BoardComponent
+      }
     ]
+
   },
 ];
 

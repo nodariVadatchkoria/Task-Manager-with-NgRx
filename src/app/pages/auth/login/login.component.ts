@@ -7,11 +7,12 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../core/services';
 import {ActivatedRoute, Router} from '@angular/router';
-import {map, Subject, switchMap, takeUntil} from 'rxjs';
+import {map, Subject, switchMap, takeUntil, tap} from 'rxjs';
 import {CookieService} from "../../../core/services/cookie.service";
 import {ProjectService} from "../../../core/services/project.service";
 import {IProject} from "../../../core/interfaces/iproject";
 import {RoleService} from "../../../core/services/role.service";
+import {ILoginPayload} from "../../../core/interfaces";
 
 
 @Component({
@@ -60,34 +61,67 @@ export class LoginComponent implements AfterViewInit, OnInit {
     this.isRegistered ? this.password.nativeElement.focus() : null;
   }
 
+  // submit() {
+  //   this.form.markAllAsTouched();
+  //   if (this.form.invalid) return;
+  //   this.spinner = true;
+  //   this.authService
+  //       .login(this.form.value)
+  //       .pipe(takeUntil(this.sub$))
+  //       .subscribe((res) => {
+  //         this.getProjects();
+  //
+  //       })
+  //   switchMap(() => this.roleService.getMyRoles()
+  //       .pipe(
+  //           map((res: any) => {
+  //                 const role = res.user.roles.map((r: any) => r.name);
+  //                 this.cookieService.setCookie('roles', JSON.stringify(role), 1);
+  //                 const permissions: string[] = []
+  //                 const roles = res.forEach((r: any) => {
+  //                   r.permissions && permissions.push(...r.permissions.map((p: any) => p.name))
+  //                 })
+  //                 localStorage.setItem('permissions', JSON.stringify(permissions));
+  //
+  //               }
+  //           )
+  //       ),
+  //   );
+  //   if (this.projects.length > 0) {
+  //     this.router.navigate(['']);
+  //   } else {
+  //     this.router.navigate(['/stepper']);
+  //   }
+  // }
   submit() {
-    this.form.markAllAsTouched();
-    if (this.form.invalid) return;
-    this.spinner = true;
-    this.authService
-      .login(this.form.value)
-      .pipe(takeUntil(this.sub$))
-    .subscribe((res) => {
-        this.getProjects();
-
-      })
-    switchMap(() => this.roleService.getMyRoles()
-        .pipe(
-            map((res: any) => {
-                  const permissions: string[] = []
-                  const roles = res.forEach((r: any) => {
-                    r.permissions && permissions.push(...r.permissions.map((p: any) => p.name))
-                  })
-                  localStorage.setItem('permissions', JSON.stringify(permissions));
-                }
-            )
-        ),
-    );
-    if (this.projects.length > 0) {
-      this.router.navigate(['']);
-    } else {
-      this.router.navigate(['/stepper']);
+    if (this.form.invalid) {
+      return;
     }
+
+    this.authService.login(this.form.value)
+        .pipe(
+            tap((res: ILoginPayload) => {
+              this.cookieService.setCookie('accessToken', res.token.accessToken, 1);
+              this.cookieService.setCookie('refreshToken', res.token.refreshToken, 1);
+              const roles = res.user.roles.map((r: any) => r.name);
+              this.cookieService.setCookie('roles', JSON.stringify(roles), 1);
+              localStorage.setItem('user', JSON.stringify(res.user));
+              this.router.navigate(['/']);
+            }),
+            switchMap(() => this.roleService.getMyRoles()
+                .pipe(
+                    map((res: any) => {
+                          const permissions: string[] = []
+                          const roles = res.forEach((r: any) => {
+                            r.permissions && permissions.push(...r.permissions.map((p: any) => p.name))
+                          })
+                          localStorage.setItem('permissions', JSON.stringify(permissions));
+                        }
+                    )
+                ),
+            )
+        )
+        .subscribe()
 
   }
 

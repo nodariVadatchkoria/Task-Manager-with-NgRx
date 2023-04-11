@@ -1,6 +1,6 @@
 {
-  "name": "task-manager-front",
-  "version": "0.0.0",
+  "name": "task-manager-ngrx",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

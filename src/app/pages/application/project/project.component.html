@@ -6,8 +6,7 @@
       Select Project: <select [ngModel]="currentProject?.id"
                               (ngModelChange)="selectedProject($event)">
       <option selected></option>
-      <option *ngFor="let project of projects$ | async"
-              [value]="project.id"
+      <option *ngFor="let project of projects$ | async" [value]="project.id"
       >
         {{project.name}}
       </option>

@@ -4,7 +4,7 @@ import {Observable, Subject, takeUntil} from "rxjs";
 import {IProject} from "../../../core/interfaces/iproject";
 import {Router} from "@angular/router";
 import {ProjectFacade} from "../../../facades/project-facade.service";
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {initCurrentProject, loadProjects, ProjectStateModule, setProject} from "../../../store";
 import {currentProject} from "../../../store/rxProject/project.selectors";
 
@@ -14,8 +14,8 @@ import {currentProject} from "../../../store/rxProject/project.selectors";
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit, AfterViewInit {
-  projects: any = [];
-  projects$ = this.store.select(state => state.project.projects)
+  projects:any = [];
+  projects$ = this.store.select(project => project.project.projects)
   // currentProject?: IProject  = this.projectFacade.getProject()
   currentProject: IProject | null = null
   sub$ = new Subject()
@@ -32,8 +32,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     // this.getMyProjects()
     this.store.dispatch(loadProjects())
     this.store.dispatch(initCurrentProject())
-    this.store.select(currentProject)
-        .pipe(takeUntil(this.sub$))
+    this.store.pipe(select(currentProject))
         .subscribe((project) => {
           this.currentProject = project;
         })
@@ -41,11 +40,11 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   selectedProject(projectId: any) {
-    this.store.dispatch(setProject({projectId}))
-    // this.projectFacade.setProjectId(projectId)
-    // setTimeout(() => {
-    //   location.reload()
-    // }, 6000)
+    // this.store.dispatch(setProject(projectId))
+
+
+
+    this.projectFacade.setProjectId(projectId)
   }
 
   getMyProjects() {

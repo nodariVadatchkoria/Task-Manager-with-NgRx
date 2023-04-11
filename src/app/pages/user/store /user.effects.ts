@@ -3,7 +3,7 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {UsersService} from "../../../core/services/users.service";
 import {loadUsers, loadUsersSuccess, loadUsersFailure} from "./user.actions";
 import {catchError, map, of, switchMap} from "rxjs";
-import {data} from "autoprefixer";
+
 
 @Injectable()
 
@@ -15,11 +15,14 @@ export class UserEffects {
 
     loadUsers$ = createEffect(() => this.actions$.pipe(
         ofType(loadUsers),
-        switchMap((res) => this.usersService.getUsers({
+        switchMap(() => this.usersService.getUsers({
             page: 1,
             limit: 10,
+
 })),
-        map(() => loadUsersSuccess({data})),
+        map((data) => loadUsersSuccess({data} )),
+
         catchError((err) => of(loadUsersFailure({error: err})))
     ));
+
 }

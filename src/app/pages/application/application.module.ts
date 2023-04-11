@@ -47,7 +47,7 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
         NgxMatColorPickerModule,
         ReactiveFormsModule,
         MatButtonModule,
-        MatSnackBarModule
+
 
         // StoreModule.forFeature('project' , projectReducer),
         //

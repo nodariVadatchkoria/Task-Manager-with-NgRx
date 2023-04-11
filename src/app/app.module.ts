@@ -26,6 +26,7 @@ import {ProjectEffects, projectReducer} from "./store";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BacklogComponent } from './pages/backlog/backlog.component';
 import {MatTableModule} from "@angular/material/table";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 
@@ -65,6 +66,7 @@ import {MatTableModule} from "@angular/material/table";
         ),
         StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
         MatTableModule,
+        MatSnackBarModule,
     ],
     providers: [
         {
