@@ -33,14 +33,14 @@ export const projectReducer = createReducer(
     }
     ),
     on(loadProjectsFailure, (state, action) => state),
-    // on(setProject, (state, action) => {
-    //     const project = state.projects.find((project) => project.id === +action.projectId);
-    //     project && localStorage.setItem('project', JSON.stringify(project));
-    //     return {
-    //         ...state,
-    //         currentProject: project || null
-    //     };
-    // }),
+    on(setProject, (state, action) => {
+        const project = state.projects.find((project) => project.id === +action.projectId);
+        project && localStorage.setItem('project', JSON.stringify(project));
+        return {
+            ...state,
+            currentProject: project || null
+        };
+    }),
     on(setProjectSuccess, (state, action) => {
 
         return {

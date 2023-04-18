@@ -21,16 +21,18 @@ import {state} from "@angular/animations";
 import {IProject} from "../../core/interfaces/iproject";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {ProjectFacade} from "../../facades/project-facade.service";
 
 
 @Injectable()
-export class ProjectEffects{
+export class ProjectEffects {
     constructor(
         private actions$: Actions,
         private projectService: ProjectService,
         private store: Store,
         private _snackBar: MatSnackBar,
         private router: Router,
+        private projectFacade: ProjectFacade
 
     ) {
     }
@@ -50,6 +52,7 @@ export class ProjectEffects{
             catchError((error) => of(loadProjectsFailure({error})))
         ))
     ))
+
 
     setProjectSuccess$ = createEffect(() => this.actions$.pipe(
         ofType(setProjectSuccess),

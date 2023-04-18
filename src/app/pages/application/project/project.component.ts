@@ -14,7 +14,7 @@ import {currentProject} from "../../../store/rxProject/project.selectors";
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit, AfterViewInit {
-  projects:any = [];
+  // projects:any = [];
   projects$ = this.store.select(project => project.project.projects)
   // currentProject?: IProject  = this.projectFacade.getProject()
   currentProject: IProject | null = null
@@ -32,7 +32,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     // this.getMyProjects()
     this.store.dispatch(loadProjects())
     this.store.dispatch(initCurrentProject())
-    this.store.pipe(select(currentProject))
+    this.store.select(currentProject)
         .subscribe((project) => {
           this.currentProject = project;
         })
@@ -40,11 +40,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   selectedProject(projectId: any) {
-    // this.store.dispatch(setProject(projectId))
+    this.store.dispatch(setProject({projectId}))
 
-
-
-    this.projectFacade.setProjectId(projectId)
   }
 
   getMyProjects() {

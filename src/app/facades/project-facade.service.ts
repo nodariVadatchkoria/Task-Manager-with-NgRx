@@ -3,14 +3,16 @@ import {ProjectService} from "../core/services/project.service";
 import {BehaviorSubject, Observable, tap} from "rxjs";
 import {IProject} from "../core/interfaces/iproject";
 import {PaginationResponse} from "../core/interfaces/pagination-response";
+import {BaseService} from "../core/services";
 
 @Injectable({ providedIn: 'root' })
-export class ProjectFacade {
+export class ProjectFacade extends BaseService{
 
   myProjects: BehaviorSubject<IProject[]> = new BehaviorSubject<IProject[]>([]);
   myProjects$ = this.myProjects.asObservable();
 
-  constructor(private projectService: ProjectService ) {}
+  constructor(private projectService: ProjectService ) {
+    super();}
 
   setProject(project: any) {
     if (project) {
@@ -28,9 +30,10 @@ getMyProjects$(): Observable<IProject[]>{
 
     return project ? JSON.parse(project) : null;
   }
-  setProjectId(projectId: any) {
+  setProjectId(projectId: number) {
     this.projectService.getProjectById(projectId).subscribe((project) => {
-      localStorage.setItem('project', JSON.stringify(project));
+          localStorage.setItem('project', JSON.stringify(project));
+
     }
     )
   }
